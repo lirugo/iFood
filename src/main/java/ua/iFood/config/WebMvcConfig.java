@@ -14,7 +14,7 @@ import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("ua.iFood")
+@ComponentScan("ua.iFood.controller")
 public class WebMvcConfig implements WebMvcConfigurer {
 
     @Autowired
