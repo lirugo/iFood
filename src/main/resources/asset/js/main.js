@@ -4,7 +4,7 @@ import App from 'App.vue'
 import Vuetify from 'vuetify'
 
 Vue.use(Vuetify)
-// main.styl
+import 'vuetify/dist/vuetify.min.css'
 
 new Vue({
     el: '#app',
