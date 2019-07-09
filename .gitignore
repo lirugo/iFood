@@ -1,0 +1,12 @@
+*.class
+
+# Package Files #
+*.jar
+
+# IntelliJ:
+.idea/
+*.iml
+
+# Maven:
+target/
+
