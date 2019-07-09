@@ -1,0 +1,30 @@
+{
+  "name": "iFood",
+  "version": "1.0.0",
+  "author": "lirugo <roostik21@gmail.com>",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "vue": "^2.6.10",
+    "vuetify": "^1.5.16"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.0",
+    "@babel/preset-env": "^7.5.2",
+    "babel-loader": "^8.0.6",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.1",
+    "vue-cli-plugin-vuetify": "^0.5.0",
+    "vue-loader": "^15.7.0",
+    "vue-template-compiler": "^2.6.10",
+    "vuetify-loader": "^1.0.5",
+    "webpack": "^4.35.3",
+    "webpack-cli": "^3.3.5",
+    "webpack-dev-server": "^3.7.2"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/lirugo/iFood.git"
+}
