@@ -1,17 +1,17 @@
 <template>
     <v-app>
         <v-container fluid>
-            <Hello/>
+            <Navigation/>
         </v-container>
     </v-app>
 </template>
 
 <script>
-    import Hello from 'components/Hello.vue'
+    import Navigation from 'components/Navigation.vue'
 
     export default {
         components: {
-            Hello
+            Navigation,
         }
     }
 </script>
