@@ -12,9 +12,13 @@ Vue.use(VueRouter)
 Vue.config.productionTip = false
 
 import Welcome from './components/Welcome.vue'
+import ListOfFood from './components/ListOfFood/ListOfFood.vue'
+import AddFoodDialog from './components/ListOfFood/AddFoodDialog.vue'
 
 const routes = [
     { path: '/welcome', component: Welcome },
+    { path: '/ListOfFood', component: ListOfFood },
+    { path: '/AddFood', component: AddFoodDialog },
 ]
 
 const router = new VueRouter({
