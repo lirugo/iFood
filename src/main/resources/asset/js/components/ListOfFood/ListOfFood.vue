@@ -18,21 +18,18 @@
           >
             <v-icon>add</v-icon>
           </v-btn>
-<!--          <v-btn icon>-->
-<!--            <v-icon>search</v-icon>-->
-<!--          </v-btn>-->
+          <!--          <v-btn icon>-->
+          <!--            <v-icon>search</v-icon>-->
+          <!--          </v-btn>-->
         </v-toolbar>
 
         <v-list two-line class="pa-0">
-          <template v-for="(item, index) in foods">
+          <template v-for="item in foods">
 
-            <v-divider
-                    :key="index"
-                    :inset="item.inset"
-            ></v-divider>
+            <v-divider/>
 
             <v-list-tile
-                    :key="item.name"
+                    :key="item.id"
                     avatar
                     @click=""
             >
@@ -44,15 +41,17 @@
                 <v-list-tile-title v-html="item.name"></v-list-tile-title>
                 <v-list-tile-sub-title>
                   100 gr of product contains -
-                    proteins {{item.proteins}} gr,
-                    fat {{item.fat}} gr,
-                    carbohydrates {{item.carbohydrates}} gr,
-                    calories {{item.calories}} gr.
+                  proteins {{item.proteins}} gr,
+                  fat {{item.fat}} gr,
+                  carbohydrates {{item.carbohydrates}} gr,
+                  calories {{item.calories}} gr.
                 </v-list-tile-sub-title>
               </v-list-tile-content>
 
               <v-list-tile-action>
-                <v-btn icon ripple>
+                <v-btn icon ripple
+                       @click="deleteFood(item.id)"
+                >
                   <v-icon color="grey lighten-1">delete</v-icon>
                 </v-btn>
               </v-list-tile-action>
@@ -66,20 +65,30 @@
 
 <script>
   import AddFoodDialog from 'components/ListOfFood/AddFoodDialog.vue'
-  import { mapState } from 'vuex'
+  import {mapState} from 'vuex'
+  import {mapActions} from 'vuex'
 
   export default {
     components: {
       AddFoodDialog,
     },
     computed: mapState(
-      ['foods']
+            ['foods']
     ),
     data () {
       return {
         addFoodDialog : false,
       }
     },
+    methods: {
+      ...mapActions(['deleteFoodAction']),
+      deleteFood(id){
+        //Delete in server
+        this.$http.delete('/api/food/' + id)
+        //Delete in vuex
+        this.deleteFoodAction(id)
+      }
+    }
   }
 </script>
 

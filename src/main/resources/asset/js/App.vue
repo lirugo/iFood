@@ -21,10 +21,7 @@
             Navigation,
         },
         mounted() {
-            //TODO move code belove it to store.js - fetchFoodsAction
-            this.$http.get('/api/food/').then((response) => {
-                this.fetchFoodsAction(response.body)
-            });
+            this.fetchFoodsAction()
         },
         methods: {
             ...mapActions(['fetchFoodsAction']),

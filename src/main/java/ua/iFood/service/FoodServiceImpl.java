@@ -16,7 +16,7 @@ public class FoodServiceImpl implements FoodService{
 
     @Override
     public List<Food> getAll() {
-        return foodRepo.findAll();
+        return foodRepo.findAllByOrderByIdDesc();
     }
 
     @Override

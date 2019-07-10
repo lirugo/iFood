@@ -13,6 +13,7 @@ import {router} from 'router'
 //Vuex
 import store from 'store'
 
+//Vue resource
 import VueResource from 'vue-resource';
 Vue.use(VueResource);
 

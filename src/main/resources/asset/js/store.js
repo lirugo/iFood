@@ -11,11 +11,20 @@ export default new Vuex.Store({
         getFood: state => state.foods
     },
     mutations: {
-        storeFoodMutation (state, food) {
+        addFoodMutation (state, food) {
             state.foods = [
                 food,
                 ...state.foods,
             ]
+        },
+        deleteFoodMutation (state, id) {
+            const index = state.foods.findIndex(item => item.id === id)
+            if(index > -1){
+                state.foods = [
+                    ...state.foods.slice(0,index),
+                    ...state.foods.slice(index+1)
+                ]
+            }
         },
         fetchFoodMutation (state, foods) {
             state.foods = foods
@@ -23,10 +32,15 @@ export default new Vuex.Store({
     },
     actions: {
         addFoodAction({commit}, food){
-            commit('storeFoodMutation', food)
+            commit('addFoodMutation', food)
         },
-        fetchFoodsAction({commit}, foods){
-            commit('fetchFoodMutation', foods)
+        deleteFoodAction({commit}, food){
+            commit('deleteFoodMutation', food)
+        },
+        fetchFoodsAction({commit}){
+            Vue.http.get('/api/food/').then(response => {
+                commit('fetchFoodMutation', response.body)
+            });
         }
     }
 })

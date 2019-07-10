@@ -118,9 +118,10 @@
             ...mapActions(['addFoodAction']),
             addFood(){
                 //TODO send to server
-
-                //Update vuex
-                this.addFoodAction(this.food)
+                this.$http.post('/api/food/', this.food).then((response) => {
+                    //Update vuex
+                    this.addFoodAction(response.body)
+                })
 
                 //Clear
                 this.dialog = false
