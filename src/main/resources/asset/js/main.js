@@ -17,6 +17,10 @@ import store from 'store'
 import VueResource from 'vue-resource';
 Vue.use(VueResource);
 
+//VeeValidate
+import VeeValidate from 'vee-validate';
+Vue.use(VeeValidate);
+
 new Vue({
     render: h => h(App),
     router,

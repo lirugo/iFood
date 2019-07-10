@@ -16,14 +16,20 @@
                     <small>Set value for 100 gr of product*</small>
                     <v-text-field
                             v-model="food.name"
+                            data-vv-name="food.name"
+                            v-validate="'required|max:40|min:2'"
+                            :error-messages="errors.collect('food.name')"
                             :counter="40"
                             label="Name"
                             required
-                            class="mb-3"
                     ></v-text-field>
 
                     <v-slider
                             v-model="food.proteins"
+                            v-validate="'required|min:1|max:100'"
+                            :error-messages="errors.collect('food.proteins')"
+                            data-vv-name="food.proteins"
+                            required
                             label="Proteins"
                             thumb-label
                             :thumb-size="24"
@@ -33,6 +39,10 @@
                     ></v-slider>
                     <v-slider
                             v-model="food.fat"
+                            v-validate="'required|min:1|max:100'"
+                            :error-messages="errors.collect('food.fat')"
+                            data-vv-name="food.fat"
+                            required
                             label="Fat"
                             thumb-label
                             :thumb-size="24"
@@ -42,6 +52,10 @@
                     ></v-slider>
                     <v-slider
                             v-model="food.carbohydrates"
+                            v-validate="'required|min:1|max:100'"
+                            :error-messages="errors.collect('food.carbohydrates')"
+                            data-vv-name="food.carbohydrates"
+                            required
                             label="Carbohydrates"
                             thumb-label
                             :thumb-size="24"
@@ -51,6 +65,10 @@
                     ></v-slider>
                     <v-slider
                             v-model="food.calories"
+                            v-validate="'required|min:1|max:100'"
+                            :error-messages="errors.collect('food.calories')"
+                            data-vv-name="food.calories"
+                            required
                             label="Calories"
                             thumb-label
                             :thumb-size="24"
@@ -90,7 +108,12 @@
     import {mapActions} from 'vuex'
 
     export default {
+        $_veeValidate: {
+            validator: 'new'
+        },
         props: ['addFoodDialog'],
+        mounted(){
+        },
         data(){
             return {
                 food: {
@@ -99,7 +122,7 @@
                     fat: null,
                     carbohydrates: null,
                     calories: null,
-                }
+                },
             }
         },
         computed: {
@@ -116,21 +139,25 @@
         },
         methods: {
             ...mapActions(['addFoodAction']),
-            addFood(){
-                //TODO send to server
-                this.$http.post('/api/food/', this.food).then((response) => {
-                    //Update vuex
-                    this.addFoodAction(response.body)
-                })
+            async addFood() {
+                let valid = await this.$validator.validate();
 
-                //Clear
-                this.dialog = false
-                this.food = {
-                    name: null,
-                    proteins: null,
-                    fat: null,
-                    carbohydrates: null,
-                    calories: null,
+                //If data valid
+                if(valid) {
+                    this.$http.post('/api/food/', this.food).then((response) => {
+                        //Update vuex
+                        this.addFoodAction(response.body)
+                    })
+
+                    //Clear
+                    this.dialog = false
+                    this.food = {
+                        name: null,
+                        proteins: null,
+                        fat: null,
+                        carbohydrates: null,
+                        calories: null,
+                    }
                 }
             }
         }
