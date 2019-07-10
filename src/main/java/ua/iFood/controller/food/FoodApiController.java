@@ -26,7 +26,7 @@ public class FoodApiController {
                 .orElseThrow(() -> new FoodNotFoundException(id));
     }
 
-    @PutMapping("/employees/{id}")
+    @PutMapping("{id}")
     public Food update(@RequestBody Food newFood, @PathVariable Long id) {
 
         return foodRepo.findById(id)
@@ -38,7 +38,7 @@ public class FoodApiController {
                 });
     }
 
-    @PostMapping("/employees")
+    @PostMapping
     public Food store(@RequestBody Food food) {
         return foodRepo.save(food);
     }
