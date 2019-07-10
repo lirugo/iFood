@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import App from 'App.vue'
+import '@babel/polyfill'
 
 //Vuetify
 import Vuetify from 'vuetify'
@@ -10,12 +11,10 @@ import 'vuetify/dist/vuetify.min.css'
 import {router} from 'router'
 
 //Vuex
-import Vuex from 'vuex';
-Vue.use(Vuex);
-import 'es6-promise/auto';
-
+import store from 'store'
 
 new Vue({
     render: h => h(App),
     router,
+    store,
 }).$mount('#app')

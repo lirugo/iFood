@@ -8,6 +8,7 @@
   },
   "main": "index.js",
   "dependencies": {
+    "@babel/polyfill": "^7.4.4",
     "es6-promise": "^4.2.8",
     "vue": "^2.6.10",
     "vue-router": "^3.0.7",

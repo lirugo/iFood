@@ -24,7 +24,7 @@
         </v-toolbar>
 
         <v-list two-line class="pa-0">
-          <template v-for="(item, index) in items">
+          <template v-for="(item, index) in food">
 
             <v-divider
                     v-if="item.divider"
@@ -62,33 +62,18 @@
 
 <script>
   import AddFoodDialog from 'components/ListOfFood/AddFoodDialog.vue'
+  import { mapState } from 'vuex'
 
   export default {
     components: {
       AddFoodDialog,
     },
+    computed: mapState(
+      ['food']
+    ),
     data () {
       return {
         addFoodDialog : false,
-        items: [
-          {
-            avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
-            title: 'Oatmeal',
-            subtitle: "100gr of food contains - 10gr proteins, 10gr fat, 10gr carbohydrates, 300 calories"
-          },
-          { divider: true, inset: true },
-          {
-            avatar: 'https://cdn.vuetifyjs.com/images/lists/2.jpg',
-            title: 'Buckwheat',
-            subtitle: "100gr of food contains - 10gr proteins, 10gr fat, 10gr carbohydrates, 300 calories"
-          },
-          { divider: true, inset: true },
-          {
-            avatar: 'https://cdn.vuetifyjs.com/images/lists/3.jpg',
-            title: 'Rice',
-            subtitle: "100gr of food contains - 10gr proteins, 10gr fat, 10gr carbohydrates, 300 calories"
-          }
-        ]
       }
     }
   }
