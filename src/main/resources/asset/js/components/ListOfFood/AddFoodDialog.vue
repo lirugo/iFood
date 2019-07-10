@@ -15,7 +15,7 @@
                 <v-card-text>
                     <small>Set value for 100 gr of product*</small>
                     <v-text-field
-                            v-model="name"
+                            v-model="food.name"
                             :counter="40"
                             label="Name"
                             required
@@ -23,7 +23,7 @@
                     ></v-text-field>
 
                     <v-slider
-                            v-model="proteins"
+                            v-model="food.proteins"
                             label="Proteins"
                             thumb-label
                             :thumb-size="24"
@@ -32,7 +32,7 @@
                             append-icon="add"
                     ></v-slider>
                     <v-slider
-                            v-model="fat"
+                            v-model="food.fat"
                             label="Fat"
                             thumb-label
                             :thumb-size="24"
@@ -41,7 +41,7 @@
                             append-icon="add"
                     ></v-slider>
                     <v-slider
-                            v-model="carbohydrates"
+                            v-model="food.carbohydrates"
                             label="Carbohydrates"
                             thumb-label
                             :thumb-size="24"
@@ -50,7 +50,7 @@
                             append-icon="add"
                     ></v-slider>
                     <v-slider
-                            v-model="calories"
+                            v-model="food.calories"
                             label="Calories"
                             thumb-label
                             :thumb-size="24"
@@ -76,6 +76,7 @@
                     <v-btn
                             color="primary"
                             flat
+                            @click="addFood"
                     >
                         Create
                     </v-btn>
@@ -86,15 +87,19 @@
 </template>
 
 <script>
+    import {mapActions} from 'vuex'
+
     export default {
         props: ['addFoodDialog'],
         data(){
             return {
-                name: null,
-                proteins: null,
-                fat: null,
-                carbohydrates: null,
-                calories: null,
+                food: {
+                    name: null,
+                    proteins: null,
+                    fat: null,
+                    carbohydrates: null,
+                    calories: null,
+                }
             }
         },
         computed: {
@@ -106,6 +111,25 @@
                     if (!value) {
                         this.$emit('close')
                     }
+                }
+            }
+        },
+        methods: {
+            ...mapActions(['addFoodAction']),
+            addFood(){
+                //TODO send to server
+
+                //Update vuex
+                this.addFoodAction(this.food)
+
+                //Clear
+                this.dialog = false
+                this.food = {
+                    name: null,
+                    proteins: null,
+                    fat: null,
+                    carbohydrates: null,
+                    calories: null,
                 }
             }
         }

@@ -24,27 +24,31 @@
         </v-toolbar>
 
         <v-list two-line class="pa-0">
-          <template v-for="(item, index) in food">
+          <template v-for="(item, index) in foods">
 
             <v-divider
-                    v-if="item.divider"
                     :key="index"
                     :inset="item.inset"
             ></v-divider>
 
             <v-list-tile
-                    v-else
-                    :key="item.title"
+                    :key="item.name"
                     avatar
                     @click=""
             >
               <v-list-tile-avatar>
-                <img :src="item.avatar">
+                <img src="https://cdn.vuetifyjs.com/images/lists/1.jpg">
               </v-list-tile-avatar>
 
               <v-list-tile-content>
-                <v-list-tile-title v-html="item.title"></v-list-tile-title>
-                <v-list-tile-sub-title v-html="item.subtitle"></v-list-tile-sub-title>
+                <v-list-tile-title v-html="item.name"></v-list-tile-title>
+                <v-list-tile-sub-title>
+                  100 gr of product contains -
+                    proteins {{item.proteins}} gr,
+                    fat {{item.fat}} gr,
+                    carbohydrates {{item.carbohydrates}} gr,
+                    calories {{item.calories}} gr.
+                </v-list-tile-sub-title>
               </v-list-tile-content>
 
               <v-list-tile-action>
@@ -69,13 +73,13 @@
       AddFoodDialog,
     },
     computed: mapState(
-      ['food']
+      ['foods']
     ),
     data () {
       return {
         addFoodDialog : false,
       }
-    }
+    },
   }
 </script>
 

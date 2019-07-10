@@ -5,32 +5,30 @@ import 'es6-promise/auto'
 
 export default new Vuex.Store({
     state: {
-        food: [
+        foods: [
             {
-                avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
-                title: 'Oatmeal',
-                subtitle: "100gr of food contains - 10gr proteins, 10gr fat, 10gr carbohydrates, 300 calories"
+                name: "Name",
+                proteins: 11,
+                fat: 22,
+                carbohydrates: 33,
+                calories: 44,
             },
-            { divider: true, inset: true },
-            {
-                avatar: 'https://cdn.vuetifyjs.com/images/lists/2.jpg',
-                title: 'Buckwheat',
-                subtitle: "100gr of food contains - 10gr proteins, 10gr fat, 10gr carbohydrates, 300 calories"
-            },
-            { divider: true, inset: true },
-            {
-                avatar: 'https://cdn.vuetifyjs.com/images/lists/3.jpg',
-                title: 'Rice',
-                subtitle: "100gr of food contains - 10gr proteins, 10gr fat, 10gr carbohydrates, 300 calories"
-            }
         ]
     },
     getters: {
-        getFood: state => state.food
+        getFood: state => state.foods
     },
     mutations: {
-        increment (state) {
-            state.count++
+        storeFoodMutation (state, food) {
+            state.foods = [
+                food,
+                ...state.foods,
+            ]
+        }
+    },
+    actions: {
+        addFoodAction({commit}, food){
+            commit('storeFoodMutation', food)
         }
     }
 })
