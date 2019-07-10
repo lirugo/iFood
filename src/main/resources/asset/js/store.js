@@ -5,15 +5,7 @@ import 'es6-promise/auto'
 
 export default new Vuex.Store({
     state: {
-        foods: [
-            {
-                name: "Name",
-                proteins: 11,
-                fat: 22,
-                carbohydrates: 33,
-                calories: 44,
-            },
-        ]
+        foods: []
     },
     getters: {
         getFood: state => state.foods
@@ -24,11 +16,17 @@ export default new Vuex.Store({
                 food,
                 ...state.foods,
             ]
-        }
+        },
+        fetchFoodMutation (state, foods) {
+            state.foods = foods
+        },
     },
     actions: {
         addFoodAction({commit}, food){
             commit('storeFoodMutation', food)
+        },
+        fetchFoodsAction({commit}, foods){
+            commit('fetchFoodMutation', foods)
         }
     }
 })

@@ -13,11 +13,21 @@
 </template>
 
 <script>
+    import {mapActions} from 'vuex'
     import Navigation from 'components/Navigation.vue'
 
     export default {
         components: {
             Navigation,
+        },
+        mounted() {
+            //TODO move code belove it to store.js - fetchFoodsAction
+            this.$http.get('/api/food/').then((response) => {
+                this.fetchFoodsAction(response.body)
+            });
+        },
+        methods: {
+            ...mapActions(['fetchFoodsAction']),
         }
     }
 </script>
