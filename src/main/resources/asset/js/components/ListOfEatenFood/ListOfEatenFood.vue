@@ -56,7 +56,11 @@
 
         <template>
           <v-card class="elevation-2">
-            <v-card-title class="pb-0">
+            <v-system-bar status color="primary" lights-out class="pa-3">
+              <v-spacer></v-spacer>
+              <span>27.08.19</span>
+            </v-system-bar>
+            <v-card-title class="pb-0 pt-0">
               <v-tooltip bottom>
                 <template v-slot:activator="{ on }">
                   <v-btn outline label color="green" class="pa-0" small fab v-on="on">120</v-btn>
