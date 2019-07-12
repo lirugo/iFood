@@ -150,6 +150,7 @@
                     })
 
                     //Clear
+                    this.errors.items = []
                     this.dialog = false
                     this.food = {
                         name: null,

@@ -14,17 +14,13 @@ import java.util.Map;
 public class EatenFoodApiController {
 
     @Autowired
-    private FoodServiceImpl foodService;
-    @Autowired
     private EatenFoodServiceImpl eatenFoodService;
 
     @PostMapping
     public EatenFood store(
             @RequestBody Map<String, Integer> body
     ) {
-        Food food = foodService.getById(body.get("id"));
-        EatenFood eatenFood = eatenFoodService.save(food, body.get("weight"));
-        return eatenFood;
+        return eatenFoodService.save(body.get("id"), body.get("weight"));
     }
 
 }

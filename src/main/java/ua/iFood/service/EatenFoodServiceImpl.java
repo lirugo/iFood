@@ -14,10 +14,15 @@ public class EatenFoodServiceImpl implements EatenFoodService{
     @Autowired
     private EatenFoodRepo eatenFoodRepo;
 
+    @Autowired
+    private FoodServiceImpl foodService;
+
     @Override
-    public EatenFood save(Food food, int weight) {
+    public EatenFood save(long foodId, int weight) {
+        Food food = foodService.getById(foodId);
+
         EatenFood eatenFood = new EatenFood();
-        eatenFood.setFood(food.getId());
+        eatenFood.setFood(food);
         eatenFood.setWeight(weight);
 
         LocalDateTime now = LocalDateTime.now();

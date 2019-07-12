@@ -74,10 +74,8 @@
 
         //If data valid
         if(valid) {
-            console.log(this.food)
           this.$http.post('/api/eaten-food/', this.food).then((response) => {
-            console.log(response)
-            //   Update vuex
+            // TODO Update vuex
             // this.addFoodAction(response.body)
           })
 

@@ -6,5 +6,5 @@ import ua.iFood.entity.Food;
 import java.util.List;
 
 public interface EatenFoodService {
-    EatenFood save(Food food, int weight);
+    EatenFood save(long foodId, int weight);
 }
