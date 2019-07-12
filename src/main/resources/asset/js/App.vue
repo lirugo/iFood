@@ -1,7 +1,9 @@
 <template>
     <v-app>
         <v-container fluid>
-            <Navigation/>
+            <navigation/>
+            <snackbar/>
+
             <transition
                     name="fade"
                     mode="out-in"
@@ -15,10 +17,12 @@
 <script>
     import {mapActions} from 'vuex'
     import Navigation from 'components/Navigation.vue'
+    import Snackbar from 'components/Snackbar.vue'
 
     export default {
         components: {
             Navigation,
+            Snackbar,
         },
         mounted() {
             this.fetchFoodsAction()

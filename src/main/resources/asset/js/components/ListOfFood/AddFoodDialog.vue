@@ -138,7 +138,7 @@
             }
         },
         methods: {
-            ...mapActions(['addFoodAction']),
+            ...mapActions(['addFoodAction', 'addSnackbarAction']),
             async addFood() {
                 let valid = await this.$validator.validate();
 
@@ -149,6 +149,12 @@
                         this.addFoodAction(response.body)
                     })
 
+
+                    //Show notification
+                    this.addSnackbarAction({
+                        text: 'Successful created',
+                        color: 'success'
+                    })
                     //Clear
                     this.errors.items = []
                     this.dialog = false

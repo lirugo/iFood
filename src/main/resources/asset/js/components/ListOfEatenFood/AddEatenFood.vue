@@ -53,6 +53,7 @@
 
 <script>
   import {mapState} from 'vuex'
+  import {mapActions} from 'vuex'
 
   export default {
     $_veeValidate: {
@@ -68,6 +69,7 @@
       },
     }),
     methods: {
+      ...mapActions(['addSnackbarAction']),
       async addEatenFood(){
         //Send to server
         let valid = await this.$validator.validate();
@@ -79,8 +81,13 @@
             // this.addFoodAction(response.body)
           })
 
-          this.errors.items = []
+          //Show notification
+          this.addSnackbarAction({
+            text: 'Successful created',
+            color: 'success'
+          })
           //Clear
+          this.errors.items = []
           this.food = {
             id: null,
             weight: 100,

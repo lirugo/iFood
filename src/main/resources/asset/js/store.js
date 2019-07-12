@@ -5,6 +5,15 @@ import 'es6-promise/auto'
 
 export default new Vuex.Store({
     state: {
+        snackbar: {
+            show: false,
+            showBtn: false,
+            text: 'asd',
+            y: 'top',
+            x: 'left',
+            mode: '',
+            timeout: 4000,
+        },
         foods: [],
         eatenFoods: [],
     },
@@ -13,6 +22,19 @@ export default new Vuex.Store({
         getEatenFoods: state => state.eatenFoods
     },
     mutations: {
+        addSnackbarMutation(state, snackbar){
+            let snackbarFull = {
+                show: true,
+                showBtn: false,
+                text: snackbar.text,
+                color: snackbar.color,
+                y: 'top',
+                x: 'left',
+                mode: '',
+                timeout: 4000,
+            }
+            state.snackbar = snackbarFull
+        },
         addFoodMutation(state, food) {
             state.foods = [
                 food,
@@ -42,6 +64,9 @@ export default new Vuex.Store({
         }
     },
     actions: {
+        addSnackbarAction({commit}, snackbar){
+            commit('addSnackbarMutation', snackbar)
+        },
         addFoodAction({commit}, food){
             commit('addFoodMutation', food)
         },
