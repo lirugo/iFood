@@ -4,8 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.util.Set;
+import java.util.Date;
 
 @Entity
 @Table(name = "eaten_food")
@@ -18,7 +17,7 @@ public class EatenFood implements Serializable {
     @ManyToOne
     private Food food;
     private int weight;
-    private LocalDateTime dateTime;
+    private Date date;
 
     public EatenFood() {
     }

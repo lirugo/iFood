@@ -6,7 +6,7 @@ import ua.iFood.entity.EatenFood;
 import ua.iFood.entity.Food;
 import ua.iFood.repo.EatenFoodRepo;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -31,8 +31,7 @@ public class EatenFoodServiceImpl implements EatenFoodService{
         eatenFood.setFood(food);
         eatenFood.setWeight(weight);
 
-        LocalDateTime now = LocalDateTime.now();
-        eatenFood.setDateTime(now);
+        eatenFood.setDate(new Date());
 
         eatenFoodRepo.save(eatenFood);
         return eatenFood;
