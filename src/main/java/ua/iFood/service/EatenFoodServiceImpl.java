@@ -7,6 +7,7 @@ import ua.iFood.entity.Food;
 import ua.iFood.repo.EatenFoodRepo;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class EatenFoodServiceImpl implements EatenFoodService{
@@ -16,6 +17,11 @@ public class EatenFoodServiceImpl implements EatenFoodService{
 
     @Autowired
     private FoodServiceImpl foodService;
+
+    @Override
+    public List<EatenFood> getAll() {
+        return eatenFoodRepo.findAllByOrderByIdDesc();
+    }
 
     @Override
     public EatenFood save(long foodId, int weight) {

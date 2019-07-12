@@ -22,9 +22,10 @@
         },
         mounted() {
             this.fetchFoodsAction()
+            this.fetchEatenFoodsAction()
         },
         methods: {
-            ...mapActions(['fetchFoodsAction']),
+            ...mapActions(['fetchFoodsAction', 'fetchEatenFoodsAction']),
         }
     }
 </script>

@@ -3,10 +3,9 @@ package ua.iFood.controller.food;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ua.iFood.entity.EatenFood;
-import ua.iFood.entity.Food;
 import ua.iFood.service.EatenFoodServiceImpl;
-import ua.iFood.service.FoodServiceImpl;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -15,6 +14,11 @@ public class EatenFoodApiController {
 
     @Autowired
     private EatenFoodServiceImpl eatenFoodService;
+
+    @GetMapping
+    public List<EatenFood> all(){
+        return eatenFoodService.getAll();
+    }
 
     @PostMapping
     public EatenFood store(
