@@ -10,7 +10,9 @@ class RestConfig implements RepositoryRestConfigurer {
 
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
-        config.exposeIdsFor(Food.class);
-        config.setBasePath("/api");
+        config.exposeIdsFor(Food.class)
+            .setBasePath("/api")
+            .setSortParamName("id");
     }
+
 }

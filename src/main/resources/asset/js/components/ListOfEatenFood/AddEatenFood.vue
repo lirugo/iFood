@@ -52,8 +52,7 @@
 </template>
 
 <script>
-  import {mapState} from 'vuex'
-  import {mapActions} from 'vuex'
+  import {mapActions, mapState} from 'vuex'
 
   export default {
     $_veeValidate: {
@@ -69,16 +68,15 @@
       },
     }),
     methods: {
-      ...mapActions(['addSnackbarAction']),
+      ...mapActions(['addSnackbarAction', 'addEatenFoodAction']),
       async addEatenFood(){
         //Send to server
         let valid = await this.$validator.validate();
 
         //If data valid
         if(valid) {
-          this.$http.post('/api/eaten-food/', this.food).then((response) => {
-            // TODO Update vuex
-            // this.addFoodAction(response.body)
+          this.$http.post('/api/eaten-foods/', this.food).then((response) => {
+            this.addEatenFoodAction(response.body)
           })
 
           //Show notification

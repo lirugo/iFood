@@ -1,5 +1,6 @@
 package ua.iFood.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -17,6 +18,8 @@ public class EatenFood implements Serializable {
     @ManyToOne
     private Food food;
     private int weight;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm")
     private Date date;
 
     public EatenFood() {

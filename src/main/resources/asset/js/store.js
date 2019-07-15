@@ -82,8 +82,8 @@ export default new Vuex.Store({
             });
         },
         fetchEatenFoodsAction({commit}){
-            Vue.http.get('/api/eaten-food/').then(response => {
-                commit('fetchEatenFoodMutation', response.body)
+            Vue.http.get('/api/eaten-foods').then(response => {
+                commit('fetchEatenFoodMutation', response.body._embedded.eatenFoods)
             })
         }
     }

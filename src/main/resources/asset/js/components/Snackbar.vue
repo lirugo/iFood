@@ -6,7 +6,7 @@
             :multi-line="snackbar.mode === 'multi-line'"
             :right="snackbar.x === 'right'"
             :timeout="snackbar.timeout"
-            :top="snackbar.y === 'top'"
+            :top="snackbar.y === 'bottom'"
             :vertical="snackbar.mode === 'vertical'"
             :color="snackbar.color"
     >

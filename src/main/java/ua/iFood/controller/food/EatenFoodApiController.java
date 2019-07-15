@@ -1,24 +1,21 @@
 package ua.iFood.controller.food;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import ua.iFood.entity.EatenFood;
 import ua.iFood.service.EatenFoodServiceImpl;
 
-import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/eaten-food/")
+@RequestMapping("/api/eaten-foods/")
 public class EatenFoodApiController {
 
     @Autowired
     private EatenFoodServiceImpl eatenFoodService;
-
-    @GetMapping
-    public List<EatenFood> all(){
-        return eatenFoodService.getAll();
-    }
 
     @PostMapping
     public EatenFood store(
