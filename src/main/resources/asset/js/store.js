@@ -60,6 +60,8 @@ export default new Vuex.Store({
             state.foods = foods
         },
         fetchEatenFoodMutation(state, eatenFoods){
+            //Sorting
+            eatenFoods.sort((a, b) => b.id - a.id)
             state.eatenFoods = eatenFoods
         }
     },
