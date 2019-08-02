@@ -22,5 +22,33 @@
         </v-btn>
 
         <v-spacer></v-spacer>
+        <v-chip>
+            <v-icon left color="green" class="user-icon">account_circle</v-icon>
+            <span class="user-label">
+                {{user}}
+            </span>
+        </v-chip>
     </v-toolbar>
 </template>
+<script>
+    import {mapState} from 'vuex'
+
+    export default {
+        computed: mapState(
+            ['user']
+        ),
+    }
+</script>
+
+<style scoped>
+    @media (max-width: 480px) {
+        .user-label {
+            display: none;
+        }
+        .user-icon {
+            margin: auto !important;
+        }
+    }
+    .user-label{
+    }
+</style>

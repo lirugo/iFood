@@ -25,11 +25,12 @@
             Snackbar,
         },
         mounted() {
+            this.fetchUserName()
             this.fetchFoodsAction()
             this.fetchEatenFoodsAction()
         },
         methods: {
-            ...mapActions(['fetchFoodsAction', 'fetchEatenFoodsAction']),
+            ...mapActions(['fetchUserName', 'fetchFoodsAction', 'fetchEatenFoodsAction']),
         }
     }
 </script>

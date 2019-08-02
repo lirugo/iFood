@@ -5,6 +5,7 @@ import 'es6-promise/auto'
 
 export default new Vuex.Store({
     state: {
+        user: null,
         snackbar: {
             show: false,
             showBtn: false,
@@ -18,6 +19,7 @@ export default new Vuex.Store({
         eatenFoods: [],
     },
     getters: {
+        getUser: state => state.user,
         getFood: state => state.foods,
         getEatenFoods: state => state.eatenFoods
     },
@@ -56,6 +58,9 @@ export default new Vuex.Store({
                 ]
             }
         },
+        fetchUserNameMutation(state, username) {
+            state.user = username
+        },
         fetchFoodMutation(state, foods) {
             state.foods = foods
         },
@@ -81,6 +86,11 @@ export default new Vuex.Store({
         fetchFoodsAction({commit}){
             Vue.http.get('/api/food/').then(response => {
                 commit('fetchFoodMutation', response.body)
+            });
+        },
+        fetchUserName({commit}){
+            Vue.http.get('/auth/user').then(response => {
+                commit('fetchUserNameMutation', response.body)
             });
         },
         fetchEatenFoodsAction({commit}){
