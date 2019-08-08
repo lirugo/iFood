@@ -15,3 +15,5 @@ node_modules
 yarn-error.log
 package-lock.json
 yarn.lock
+
+/src/main/resources/static/*

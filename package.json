@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "author": "lirugo <roostik21@gmail.com>",
   "scripts": {
+    "build": "webpack --mode production --output src/main/resources/static/main.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server"
   },
@@ -20,6 +21,7 @@
   "devDependencies": {
     "@babel/core": "^7.5.0",
     "@babel/preset-env": "^7.5.2",
+    "babel-cli": "^6.26.0",
     "babel-loader": "^8.0.6",
     "css-loader": "^3.0.0",
     "stylus": "^0.54.5",
