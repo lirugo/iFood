@@ -15,12 +15,20 @@
                     fluid
                     fill-height
             >
+                <v-snackbar
+                        v-model="snackbar"
+                        left
+                        color="red"
+                >
+                    {{ text }}
+                </v-snackbar>
+
                 <v-layout
                         align-center
                         justify-center
                 >
                     <v-flex
-                            xs8
+                            xs10
                             sm4
                             md2
                     >
@@ -30,7 +38,6 @@
                                     dark
                                     flat
                             >
-
                                 <v-toolbar-title>iFood</v-toolbar-title>
                                 <v-spacer></v-spacer>
                                 <v-tooltip top>
@@ -50,19 +57,48 @@
                             </v-toolbar>
                         </v-card>
 
-                        <v-card class="elevation-8">
+                        <v-card class="elevation-8 mb-4">
                             <v-card-text>
                                 <div class="text-center mb-4">
                                     <v-btn
                                             color="primary"
                                             block
-                                            href="/oauth2/authorization/google">
+                                            href="/oauth2/authorization/google"
+                                            disabled
+                                    >
                                         Sign in with Google
                                     </v-btn>
                                 </div>
                                 <v-btn block disabled>
                                     Sign in with Facebook
                                 </v-btn>
+
+                            </v-card-text>
+                        </v-card>
+
+                        <v-card class="elevation-8">
+                            <v-card-text>
+                                <form name="login" action="login" method="POST">
+                                    <v-text-field
+                                            name='username'
+                                            prepend-icon="account_circle"
+                                            label="Name"
+                                    ></v-text-field>
+                                    <v-text-field
+                                            name='password'
+                                            prepend-icon="visibility"
+                                            label="Password"
+                                            type="password"
+                                    ></v-text-field>
+                                    <v-btn
+                                            name="submit"
+                                            color="primary"
+                                            block
+                                            type="submit"
+                                    >
+                                        Login
+                                    </v-btn>
+                                </form>
                             </v-card-text>
                         </v-card>
                     </v-flex>
@@ -74,10 +110,25 @@
 
 <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+<script src="https://unpkg.com/vue-router@2.0.0/dist/vue-router.js"></script>
 <script>
+    let router = new VueRouter({
+        mode: 'history',
+        routes: []
+    });
+
     new Vue({
         el: '#app',
         vuetify: new Vuetify(),
+        router,
+        mounted(){
+            if(this.$route.query.error)
+                this.snackbar = true
+        },
+        data: {
+            snackbar: false,
+            text: 'Not correct credentials',
+        },
     })
 </script>
 </body>

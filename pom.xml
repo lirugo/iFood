@@ -129,7 +129,7 @@
             <version>3.1.9.RELEASE</version>
         </dependency>
 
-<!--New-->
+        <!--New-->
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-oauth2-client</artifactId>
@@ -147,6 +147,7 @@
             <version>5.0.7.RELEASE</version>
         </dependency>
 
+        <!-- Spring Security Web -->
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>

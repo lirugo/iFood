@@ -9,7 +9,7 @@ import ListOfEatenFood from './components/ListOfEatenFood/ListOfEatenFood.vue'
 import AddEatenFood from './components/ListOfEatenFood/AddEatenFood.vue'
 
 const routes = [
-    { path: '/welcome', component: Welcome },
+    { path: '/', component: Welcome },
     { path: '/ListOfFood', component: ListOfFood },
     { path: '/AddFood', component: AddFoodDialog },
     { path: '/ListOfEatenFood', component: ListOfEatenFood },

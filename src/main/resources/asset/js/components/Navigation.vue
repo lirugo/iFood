@@ -28,6 +28,9 @@
                 {{user}}
             </span>
         </v-chip>
+        <v-btn icon href="/logout">
+            <v-icon>exit_to_app</v-icon>
+        </v-btn>
     </v-toolbar>
 </template>
 <script>
