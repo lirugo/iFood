@@ -18,7 +18,7 @@
                 <v-snackbar
                         v-model="snackbar"
                         left
-                        color="red"
+                        :color="color"
                 >
                     {{ text }}
                 </v-snackbar>
@@ -32,7 +32,7 @@
                             sm4
                             md2
                     >
-                        <v-card class="elevation-8 mb-4">
+                        <v-card class="elevation-4 mb-4">
                             <v-toolbar
                                     color="primary"
                                     dark
@@ -57,8 +57,19 @@
                             </v-toolbar>
                         </v-card>
 
-                        <v-card class="elevation-8 mb-4">
+                        <v-card class="elevation-4 mb-4">
                             <v-card-text>
+                                <div class="text-center mb-4">
+                                    <v-btn
+                                            color="green"
+                                            dark
+                                            @click="dialog = true"
+                                            block
+                                            class="elevation-4"
+                                    >
+                                        Sign up
+                                    </v-btn>
+                                </div>
                                 <div class="text-center mb-4">
                                     <v-btn
                                             color="primary"
@@ -66,23 +77,24 @@
                                             href="/oauth2/authorization/google"
                                             disabled
                                     >
-                                        Sign in with Google
+                                        Sign up with Google
                                     </v-btn>
                                 </div>
-                                <v-btn block disabled>
-                                    Sign in with Facebook
-                                </v-btn>
-
+                                <div class="text-center mb-4">
+                                    <v-btn block disabled>
+                                        Sign up with Facebook
+                                    </v-btn>
+                                </div>
                             </v-card-text>
                         </v-card>
 
-                        <v-card class="elevation-8">
+                        <v-card class="elevation-4">
                             <v-card-text>
                                 <form name="login" action="login" method="POST">
                                     <v-text-field
-                                            name='username'
-                                            prepend-icon="account_circle"
-                                            label="Name"
+                                            name='email'
+                                            prepend-icon="email"
+                                            label="Email"
                                     ></v-text-field>
                                     <v-text-field
                                             name='password'
@@ -96,11 +108,57 @@
                                             block
                                             type="submit"
                                     >
-                                        Login
+                                        Sign in
                                     </v-btn>
                                 </form>
                             </v-card-text>
                         </v-card>
+
+                        <v-dialog
+                                v-model="dialog"
+                                width="500"
+                        >
+                            <v-card class="elevation-4">
+                                <v-card-text>
+                                    <form>
+                                        <v-text-field
+                                                v-model="user.firstName"
+                                                name='firstName'
+                                                prepend-icon="account_circle"
+                                                label="First Name"></v-text-field>
+                                        <v-text-field
+                                                v-model="user.lastName"
+                                                name='lastName'
+                                                prepend-icon="account_circle"
+                                                label="Last Name"></v-text-field>
+                                        <v-text-field
+                                                v-model="user.email"
+                                                name='email'
+                                                prepend-icon="email"
+                                                label="Email"></v-text-field>
+                                        <v-text-field
+                                                v-model="user.password"
+                                                name='password'
+                                                prepend-icon="visibility"
+                                                label="Password"
+                                                type="password"></v-text-field>
+                                        <v-text-field
+                                                v-model="user.matchingPassword"
+                                                name='matchingPassword'
+                                                prepend-icon="visibility"
+                                                label="Password"
+                                                type="confirmPass"></v-text-field>
+                                        <v-btn
+                                                color="primary"
+                                                block
+                                                @click="register"
+                                        >
+                                            Create account
+                                        </v-btn>
+                                    </form>
+                                </v-card-text>
+                            </v-card>
+                        </v-dialog>
                     </v-flex>
                 </v-layout>
             </v-container>
@@ -108,6 +166,7 @@
     </v-app>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
 <script src="https://unpkg.com/vue-router@2.0.0/dist/vue-router.js"></script>
@@ -122,13 +181,40 @@
         vuetify: new Vuetify(),
         router,
         mounted(){
-            if(this.$route.query.error)
+            if(this.$route.query.error) {
                 this.snackbar = true
+                this.text = 'Not correct credentials'
+                this.color = 'red'
+            }
         },
         data: {
+            dialog: false,
             snackbar: false,
+            color: 'red',
             text: 'Not correct credentials',
+            user: {
+                'firstName': null,
+                'lastName': null,
+                'email': null,
+                'password': null,
+                'matchingPassword': null,
+            }
         },
+        methods: {
+            register(){
+                let header = {
+                    'Content-Type': 'application/json'
+                };
+                axios.post('/user/registration', this.user, header)
+                    .then(res => {
+                        this.dialog = false
+
+                        this.snackbar = true
+                        this.text = 'User successfully created'
+                        this.color = 'green'
+                    })
+            }
+        }
     })
 </script>
 </body>

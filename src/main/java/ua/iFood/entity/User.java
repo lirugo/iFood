@@ -3,15 +3,28 @@ package ua.iFood.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
-@Data
 @Table(name = "usr")
+@Data
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    public String name;
-    public String email;
-    public String password;
+    @Column(unique = true, nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    private String firstName;
+
+    private String lastName;
+
+    private String email;
+
+    @Column(length = 60)
+    private String password;
+
+    private boolean enabled;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
 }
