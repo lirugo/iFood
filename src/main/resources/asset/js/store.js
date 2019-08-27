@@ -101,9 +101,9 @@ export default new Vuex.Store({
                 '?size=5' +
                 '&page=' + pagination.pageable.pageNumber +
                 '&search=' + pagination.search,
-            ).then(response => {
-                commit('fetchFoodMutation', response.body)
-            });
+            ).then(
+                r => commit('fetchFoodMutation', r.body),
+            );
         },
         fetchUserName({commit}){
             Vue.http.get('/auth/user').then(response => {

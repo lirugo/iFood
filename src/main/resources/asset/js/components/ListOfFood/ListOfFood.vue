@@ -104,9 +104,6 @@
                 },
                 deep: true,
             },
-            search(){
-                console.log(this.search)
-            }
         },
         methods: {
             ...mapActions(['deleteFoodAction', 'fetchFoodsAction']),
