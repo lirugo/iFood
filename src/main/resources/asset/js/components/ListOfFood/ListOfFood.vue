@@ -21,6 +21,12 @@
                             :length="foods.totalPages"
                     ></v-pagination>
 
+                    <v-text-field
+                            v-model="search"
+                            prepend-icon="search"
+                            label="Search"
+                    ></v-text-field>
+
                     <v-btn icon
                            @click.stop="addFoodDialog = true"
                     >
@@ -81,6 +87,7 @@
         ),
         data () {
             return {
+                search: null,
                 pagination: {
                     pageable:{
                         pageNumber: 1
@@ -95,6 +102,9 @@
                     this.fetchFoodsAction(this.pagination)
                 },
                 deep: true,
+            },
+            search(){
+                console.log(this.search)
             }
         },
         methods: {
@@ -108,6 +118,3 @@
         }
     }
 </script>
-
-<style scoped>
-</style>
