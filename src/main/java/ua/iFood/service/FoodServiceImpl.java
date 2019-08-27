@@ -2,7 +2,6 @@ package ua.iFood.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ua.iFood.entity.Food;
@@ -16,8 +15,8 @@ public class FoodServiceImpl implements FoodService{
     private FoodRepo foodRepo;
 
     @Override
-    public Page<Food> getAll(Pageable p) {
-        return foodRepo.findAll(p);
+    public Page<Food> getAll(Pageable p, String search) {
+        return foodRepo.findAll(search, p);
     }
 
     @Override

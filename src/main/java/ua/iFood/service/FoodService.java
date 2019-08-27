@@ -5,7 +5,7 @@ import org.springframework.data.domain.Pageable;
 import ua.iFood.entity.Food;
 
 public interface FoodService {
-    Page<Food> getAll(Pageable p);
+    Page<Food> getAll(Pageable p, String search);
     Food getById(long id);
     Food save(Food food);
     void delete(long id);

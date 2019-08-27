@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import ua.iFood.entity.Food;
 import ua.iFood.service.FoodService;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/api/food")
 public class FoodApiController {
@@ -15,8 +17,8 @@ public class FoodApiController {
     private FoodService foodService;
 
     @GetMapping
-    public Page<Food> all(Pageable p){
-        return foodService.getAll(p);
+    public Page<Food> all(Pageable p, @RequestParam Optional<String> search){
+        return foodService.getAll(p, search.orElse("_"));
     }
 
     @GetMapping("{id}")
