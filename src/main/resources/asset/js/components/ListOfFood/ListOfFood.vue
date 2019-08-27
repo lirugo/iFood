@@ -22,7 +22,7 @@
                     ></v-pagination>
 
                     <v-text-field
-                            v-model="search"
+                            v-model="pagination.search"
                             prepend-icon="search"
                             label="Search"
                     ></v-text-field>
@@ -87,10 +87,10 @@
         ),
         data () {
             return {
-                search: null,
                 pagination: {
+                    search: null,
                     pageable:{
-                        pageNumber: 1
+                        pageNumber: 0
                     },
                 },
                 addFoodDialog : false,

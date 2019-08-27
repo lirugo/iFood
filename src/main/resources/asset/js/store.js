@@ -87,15 +87,18 @@ export default new Vuex.Store({
         fetchFoodsAction({commit}, pagination){
             if(!pagination){
                 pagination = {
+                    search:'_',
                     pageable:{
-                        pageNumber: 1
+                        pageNumber: 0
                     },
                 }
             }
             Vue.http.get('/api/food' +
                 '?size=5' +
-                '&page=' + pagination.pageable.pageNumber
+                '&page=' + pagination.pageable.pageNumber +
+                '&search=' + pagination.search,
             ).then(response => {
+                console.log(response.body)
                 commit('fetchFoodMutation', response.body)
             });
         },
