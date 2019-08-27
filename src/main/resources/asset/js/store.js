@@ -92,13 +92,16 @@ export default new Vuex.Store({
                         pageNumber: 0
                     },
                 }
+
+            }else{
+                if(pagination.search === null)
+                    pagination.search = '_'
             }
             Vue.http.get('/api/food' +
                 '?size=5' +
                 '&page=' + pagination.pageable.pageNumber +
                 '&search=' + pagination.search,
             ).then(response => {
-                console.log(response.body)
                 commit('fetchFoodMutation', response.body)
             });
         },

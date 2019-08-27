@@ -17,6 +17,7 @@
 
                     <v-pagination
                             circle
+                            total-visible="5"
                             v-model="pagination.pageable.pageNumber"
                             :length="foods.totalPages"
                     ></v-pagination>
