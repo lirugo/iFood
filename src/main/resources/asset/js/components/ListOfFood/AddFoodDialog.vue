@@ -149,7 +149,6 @@
                         this.addFoodAction(response.body)
                     })
 
-
                     //Show notification
                     this.addSnackbarAction({
                         text: 'Successful created',

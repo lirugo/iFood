@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-Vue.use(Vuex);
 import 'es6-promise/auto'
+
+Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
@@ -83,8 +84,18 @@ export default new Vuex.Store({
         deleteFoodAction({commit}, food){
             commit('deleteFoodMutation', food)
         },
-        fetchFoodsAction({commit}){
-            Vue.http.get('/api/food/').then(response => {
+        fetchFoodsAction({commit}, pagination){
+            if(!pagination){
+                pagination = {
+                    pageable:{
+                        pageNumber: 1
+                    },
+                }
+            }
+            Vue.http.get('/api/food' +
+                '?size=5' +
+                '&page=' + pagination.pageable.pageNumber
+            ).then(response => {
                 commit('fetchFoodMutation', response.body)
             });
         },

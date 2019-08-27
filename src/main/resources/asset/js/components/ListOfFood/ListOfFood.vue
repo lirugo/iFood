@@ -7,24 +7,29 @@
 
             <v-card>
                 <v-toolbar color="grey lighten-3" class="elevation-0">
+                    <div class="text-xs-center">
+                        <v-chip>Total {{foods.totalElements}}</v-chip>
+                    </div>
 
                     <v-toolbar-title>List of my food</v-toolbar-title>
 
                     <v-spacer></v-spacer>
 
+                    <v-pagination
+                            circle
+                            v-model="pagination.pageable.pageNumber"
+                            :length="foods.totalPages"
+                    ></v-pagination>
 
                     <v-btn icon
                            @click.stop="addFoodDialog = true"
                     >
                         <v-icon>add</v-icon>
                     </v-btn>
-                    <!--          <v-btn icon>-->
-                    <!--            <v-icon>search</v-icon>-->
-                    <!--          </v-btn>-->
                 </v-toolbar>
 
                 <v-list two-line class="pa-0">
-                    <template v-for="item in foods">
+                    <template v-for="item in foods.content">
 
                         <v-divider/>
 
@@ -65,8 +70,7 @@
 
 <script>
     import AddFoodDialog from 'components/ListOfFood/AddFoodDialog.vue'
-    import {mapState} from 'vuex'
-    import {mapActions} from 'vuex'
+    import {mapActions, mapState} from 'vuex'
 
     export default {
         components: {
@@ -77,11 +81,24 @@
         ),
         data () {
             return {
+                pagination: {
+                    pageable:{
+                        pageNumber: 1
+                    },
+                },
                 addFoodDialog : false,
             }
         },
+        watch: {
+            pagination: {
+                handler(){
+                    this.fetchFoodsAction(this.pagination)
+                },
+                deep: true,
+            }
+        },
         methods: {
-            ...mapActions(['deleteFoodAction']),
+            ...mapActions(['deleteFoodAction', 'fetchFoodsAction']),
             deleteFood(id){
                 //Delete in server
                 this.$http.delete('/api/food/' + id)
