@@ -1,5 +1,6 @@
 package ua.iFood.service;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,7 +17,10 @@ public class FoodServiceImpl implements FoodService{
 
     @Override
     public Page<Food> getAll(Pageable p, String search) {
-        return foodRepo.findAll(search, p);
+        if(StringUtils.isNumeric(search))
+            return foodRepo.findAll(Integer.parseInt(search), p);
+        else
+            return foodRepo.findAll(search, p);
     }
 
     @Override

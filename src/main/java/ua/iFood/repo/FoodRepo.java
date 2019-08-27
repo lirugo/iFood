@@ -14,4 +14,6 @@ public interface FoodRepo extends JpaRepository<Food, Long> {
 
     @Query("SELECT f FROM Food f WHERE name like %?1%")
     Page<Food> findAll(String search, Pageable p);
+    @Query("SELECT f FROM Food f WHERE fat = ?1 OR proteins = ?1 OR carbohydrates = ?1 OR calories = ?1")
+    Page<Food> findAll(int search, Pageable p);
 }
