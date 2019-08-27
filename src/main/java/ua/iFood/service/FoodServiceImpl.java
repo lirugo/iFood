@@ -1,12 +1,13 @@
 package ua.iFood.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ua.iFood.entity.Food;
 import ua.iFood.exceptions.FoodNotFoundException;
 import ua.iFood.repo.FoodRepo;
-
-import java.util.List;
 
 @Service
 public class FoodServiceImpl implements FoodService{
@@ -15,8 +16,8 @@ public class FoodServiceImpl implements FoodService{
     private FoodRepo foodRepo;
 
     @Override
-    public List<Food> getAll() {
-        return foodRepo.findAllByOrderByIdDesc();
+    public Page<Food> getAll(Pageable p) {
+        return foodRepo.findAll(p);
     }
 
     @Override

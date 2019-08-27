@@ -1,22 +1,22 @@
 package ua.iFood.controller.food;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 import ua.iFood.entity.Food;
 import ua.iFood.service.FoodService;
 
-import java.util.List;
-
 @RestController
-@RequestMapping("/api/food/")
+@RequestMapping("/api/food")
 public class FoodApiController {
 
     @Autowired
     private FoodService foodService;
 
     @GetMapping
-    public List<Food> all(){
-        return foodService.getAll();
+    public Page<Food> all(Pageable p){
+        return foodService.getAll(p);
     }
 
     @GetMapping("{id}")
